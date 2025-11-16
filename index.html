@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rudra Eats</title>
+
+  <!-- External CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header */
+    header {
+      background-color: #ffffff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff5a5f;
+    }
+
+    nav a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-color: #ffffff;
+      padding: 40px;
+      margin: 20px;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .hero-text h2 {
+      font-size: 28px;
+      margin-top: 0;
+    }
+
+    .hero-text p {
+      color: #555;
+    }
+
+    .hero img {
+      width: 300px;
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    /* Restaurant Cards */
+    .section-title {
+      margin-left: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      width: 250px;
+      border-radius: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .card h4 {
+      margin: 10px 0 5px 0;
+    }
+
+    .card p {
+      color: #555;
+      font-size: 14px;
+      margin: 0 0 10px 0;
+    }
+
+    /* Menu List */
+    .menu-list {
+      padding: 20px;
+    }
+
+    .menu-item {
+      background-color: #ffffff;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-item img {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+
+    .price {
+      margin-left: auto;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Rudra Eats</div>
+  <nav>
+    <a href="#restaurants">Restaurants</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<div class="hero">
+  <div class="hero-text">
+    <h2>Order food from the best restaurants near you</h2>
+    <p>Fast delivery • Fresh food • 100% secure</p>
+  </div>
+  <img src="https://images.unsplash.com/photo-1606756791747-33b7d0e2b8b3?q=80" alt="Food Image">
+</div>
+
+<!-- Featured Section -->
+<div class="section-title">Featured Restaurants</div>
+<div class="card-container">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d" alt="Burger">
+    <h4>BBQ Burgers</h4>
+    <p>20–30 mins • ₹300 for two</p>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366" alt="Sushi">
+    <h4>Sushi Delight</h4>
+    <p>30–40 mins • ₹450 for two</p>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2" alt="Pasta">
+    <h4>Trattoria Pasta</h4>
+    <p>35–45 mins • ₹500 for two</p>
+  </div>
+</div>
+
+<!-- Menu Section -->
+<div id="menu" class="section-title">Menu – Florentina Pizza</div>
+<div class="menu-list">
+  <div class="menu-item">
+    <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366" alt="Margherita">
+    <div>
+      <strong>Margherita Pizza</strong>
+      <p>Classic cheese & basil</p>
+    </div>
+    <div class="price">₹299</div>
+  </div>
+
+  <div class="menu-item">
+    <img src="https://images.unsplash.com/photo-1601924638867-3ec6d3b0a0f9" alt="Pepperoni">
+    <div>
+      <strong>Pepperoni Feast</strong>
+      <p>Loaded with pepperoni</p>
+    </div>
+    <div class="price">₹399</div>
+  </div>
+
+  <div class="menu-item">
+    <img src="https://images.unsplash.com/photo-1544025162-d76694265947" alt="Garlic Bread">
+    <div>
+      <strong>Garlic Bread</strong>
+      <p>Oven fresh</p>
+    </div>
+    <div class="price">₹149</div>
+  </div>
+</div>
+
+<!-- Checkout Section -->
+<div id="checkout" class="section-title">Checkout</div>
+<div class="menu-list">
+  <div class="menu-item">
+    <div>
+      <strong>Your Order</strong>
+      <p>Margherita Pizza x1</p>
+      <p>Garlic Bread x1</p>
+    </div>
+    <div class="price">₹448</div>
+  </div>
+
+  <button style="padding:12px 18px; background-color:#ff5a5f; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer; width:100%; margin-top:10px;">Proceed to Payment</button>
+
+  <button style="padding:12px 18px; background-color:#4CAF50; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer; width:100%; margin-top:10px;">Deliver Now</button>
+</div>
+</body>
+</html>
