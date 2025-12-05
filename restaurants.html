@@ -1,0 +1,391 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Restaurants • Rudra Eats</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* animated gradient background */
+            background: linear-gradient(120deg, #ffe0e3, #fff7d9, #e2f3ff, #ffe0e3);
+            background-size: 300% 300%;
+            animation: gradientFlow 20s ease infinite;
+        }
+
+
+
+        header {
+            background-color: #ffffff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff5a5f;
+        }
+
+        nav a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background-color: #ff5a5f;
+            transition: width 0.2s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a.active {
+            color: #ff5a5f;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .page-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .page-heading {
+            margin-bottom: 18px;
+        }
+
+        .page-heading h1 {
+            margin: 0 0 6px 0;
+            font-size: 28px;
+        }
+
+        .page-heading p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Filter bar */
+
+        .filters {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 12px 16px;
+            border: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            box-sizing: border-box;
+        }
+
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        @keyframes pillPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 90, 95, 0.45);
+            }
+
+            70% {
+                transform: scale(1.08);
+                box-shadow: 0 0 0 10px rgba(255, 90, 95, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 90, 95, 0);
+            }
+        }
+
+        .pill {
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid #ddd;
+            font-size: 12px;
+            cursor: pointer;
+            background-color: #fff;
+            color: #555;
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .pill:hover {
+            border-color: #ffb3b5;
+            background-color: #fff6f6;
+        }
+
+        .pill.active {
+            background-color: #ff5a5f;
+            color: #fff;
+            border-color: #ff5a5f;
+            animation: pillPulse 1.3s ease-in-out infinite;
+        }
+
+        .sort-select {
+            font-size: 13px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        @keyframes cardBounce {
+            0% {
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+
+            35% {
+                transform: translateY(-12px) scale(1.04) rotate(-1deg);
+            }
+
+            65% {
+                transform: translateY(-5px) scale(1.01) rotate(1deg);
+            }
+
+            100% {
+                transform: translateY(-8px) scale(1.02) rotate(0deg);
+            }
+        }
+
+
+        /* Restaurant grid */
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .restaurant-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.15s ease;
+            transform-origin: center center;
+        }
+
+        .restaurant-card:hover {
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+            animation: cardBounce 0.5s ease forwards;
+        }
+
+
+        .restaurant-image-wrapper {
+            position: relative;
+            height: 160px;
+            overflow: hidden;
+        }
+
+        .restaurant-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .badge {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 999px;
+        }
+
+        .restaurant-info {
+            padding: 10px 12px 12px 12px;
+        }
+
+        .restaurant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .restaurant-header h3 {
+            margin: 0;
+            font-size: 17px;
+        }
+
+        .rating-badge {
+            background-color: #1ba672;
+            color: #fff;
+            font-size: 12px;
+            padding: 3px 7px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .rating-badge span.star {
+            font-size: 11px;
+        }
+
+        .restaurant-tags {
+            margin: 0;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .restaurant-meta {
+            margin: 6px 0 0 0;
+            font-size: 13px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .filters {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .sort-select {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Rudra Eats</div>
+        <nav>
+            <a href="restaurants.html" class="active">Restaurants</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <div class="page-wrapper">
+        <section class="page-heading">
+            <h1>Restaurants near you</h1>
+            <p>Browse handpicked places for South Indian, Punjabi, Italian and more.</p>
+        </section>
+
+        <section class="filters">
+            <div class="filter-pills">
+                <button class="pill active">All</button>
+                <button class="pill">South Indian</button>
+                <button class="pill">North Indian</button>
+                <button class="pill">Punjabi</button>
+                <button class="pill">Italian</button>
+                <button class="pill">Pure Veg</button>
+            </div>
+
+            <div>
+                <select class="sort-select">
+                    <option>Sort by: Recommended</option>
+                    <option>Sort by: Fastest Delivery</option>
+                    <option>Sort by: Rating</option>
+                    <option>Sort by: Price (Low to High)</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="restaurant-grid">
+            <!-- Madras Cafe -->
+            <article class="restaurant-card">
+                <div class="restaurant-image-wrapper">
+                    <img src="south Indian.jpeg" alt="Madras Cafe - South Indian Food">
+                    <span class="badge">Pure Veg • South Indian</span>
+                </div>
+                <div class="restaurant-info">
+                    <div class="restaurant-header">
+                        <h3>Madras Cafe</h3>
+                        <div class="rating-badge">
+                            4.3
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <p class="restaurant-tags">Dosa • Idli • Uttapam</p>
+                    <p class="restaurant-meta">20–30 mins • ₹300 for two</p>
+                </div>
+            </article>
+
+            <!-- Kaake Di Hatti -->
+            <article class="restaurant-card">
+                <div class="restaurant-image-wrapper">
+                    <img src="punjabi-dishes.jpg" alt="Kaake Di Hatti - Punjabi Food">
+                    <span class="badge">Punjabi • North Indian</span>
+                </div>
+                <div class="restaurant-info">
+                    <div class="restaurant-header">
+                        <h3>Kaake Di Hatti</h3>
+                        <div class="rating-badge">
+                            4.5
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <p class="restaurant-tags">Chole Bhature • Dal Makhani • Naan</p>
+                    <p class="restaurant-meta">30–40 mins • ₹450 for two</p>
+                </div>
+            </article>
+
+            <!-- La Cielo -->
+            <article class="restaurant-card">
+                <div class="restaurant-image-wrapper">
+                    <img src="La Cielo.avif" alt="La Cielo - Italian Food">
+                    <span class="badge">Italian • Pizza • Pasta</span>
+                </div>
+                <div class="restaurant-info">
+                    <div class="restaurant-header">
+                        <h3>La Cielo</h3>
+                        <div class="rating-badge">
+                            4.4
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <p class="restaurant-tags">Pasta • Pizza • Garlic Bread</p>
+                    <p class="restaurant-meta">35–45 mins • ₹500 for two</p>
+                </div>
+            </article>
+        </section>
+    </div>
+</body>
+
+</html>

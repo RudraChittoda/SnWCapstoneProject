@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu • Rudra Eats</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #fff5f5, #fffbe0, #e9f7ff, #fff5f5);
+      background-size: 300% 300%;
+      animation: bgShift 18s ease infinite;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background-color: #ffffff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff5a5f;
+    }
+
+    nav a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 14px;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background-color: #ff5a5f;
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a.active {
+      color: #ff5a5f;
+    }
+
+    nav a.active::after {
+      width: 100%;
+    }
+
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .page-heading h1 {
+      margin: 0;
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .page-heading p {
+      color: #666;
+      margin: 0 0 18px 0;
+    }
+
+    /* Category Pills */
+    .categories {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .category-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      background-color: #fff;
+      color: #555;
+      transition: 0.2s ease;
+    }
+
+    .category-pill:hover {
+      background-color: #fff0f0;
+      border-color: #ff5a5f;
+    }
+
+    .category-pill.active {
+      background-color: #ff5a5f;
+      color: white;
+      border-color: #ff5a5f;
+      animation: popPulse 1.2s infinite;
+    }
+
+    @keyframes popPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+
+    /* Menu Grid */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      margin-top: 25px;
+    }
+
+    .menu-item-card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #eee;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      opacity: 0;
+      animation: fadeUp 0.9s forwards;
+    }
+
+    .menu-item-card:hover {
+      transform: translateY(-10px) rotate(-1deg) scale(1.03);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .menu-item-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .menu-info {
+      padding: 10px 14px;
+    }
+
+    .menu-info h3 {
+      margin: 0 0 6px 0;
+      font-size: 18px;
+    }
+
+    .menu-info p {
+      margin: 0 0 8px 0;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .price-tag {
+      font-weight: bold;
+      color: #333;
+      font-size: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      color: #555;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Rudra Eats</div>
+    <nav>
+      <a href="restaurants.html">Restaurants</a>
+      <a href="menu.html" class="active">Menu</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <div class="page-wrapper">
+    <div class="page-heading">
+      <h1>Explore Our Menu</h1>
+      <p>Top dishes picked just for you</p>
+    </div>
+
+    <div class="categories">
+      <div class="category-pill active">All</div>
+      <div class="category-pill">South Indian</div>
+      <div class="category-pill">North Indian</div>
+      <div class="category-pill">Italian</div>
+      <div class="category-pill">Street Food</div>
+      <div class="category-pill">Desserts</div>
+    </div>
+
+    <section class="menu-grid">
+      <!-- Pizza -->
+      <div class="menu-item-card">
+        <img src="Pizza.jpg">
+        <div class="menu-info">
+          <h3>Pizza</h3>
+          <p>Classic cheese & authentic taste</p>
+          <span class="price-tag">₹299</span>
+        </div>
+      </div>
+
+      <!-- Chole Bhature -->
+      <div class="menu-item-card">
+        <img src="Chole Bhature.jpeg">
+        <div class="menu-info">
+          <h3>Chole Bhature</h3>
+          <p>Pure Amritsari taste</p>
+          <span class="price-tag">₹150</span>
+        </div>
+      </div>
+
+      <!-- White Sauce Spaghetti -->
+      <div class="menu-item-card">
+        <img src="White Sauce spaghetti.jpg">
+        <div class="menu-info">
+          <h3>White Sauce Spaghetti</h3>
+          <p>Classic Italian delight</p>
+          <span class="price-tag">₹250</span>
+        </div>
+      </div>
+
+      <!-- Add a few new ones to make the page look rich -->
+      <div class="menu-item-card">
+        <img src="burger.jpg">
+        <div class="menu-info">
+          <h3>Cheese Burger</h3>
+          <p>Loaded with cheese & sauces</p>
+          <span class="price-tag">₹180</span>
+        </div>
+      </div>
+
+      <div class="menu-item-card">
+        <img src="gulabjamun.jpg">
+        <div class="menu-info">
+          <h3>Gulab Jamun</h3>
+          <p>Soft • Warm • Fresh</p>
+          <span class="price-tag">₹120</span>
+        </div>
+      </div>
+
+      <div class="menu-item-card">
+        <img src="pasta.webp">
+        <div class="menu-info">
+          <h3>Red Sauce Pasta</h3>
+          <p>Rich tomato base</p>
+          <span class="price-tag">₹220</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © 2025 Rudra Eats • Taste happiness
+  </footer>
+</body>
+</html>
